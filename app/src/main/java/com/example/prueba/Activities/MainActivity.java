@@ -1,7 +1,8 @@
-package com.example.prueba.Layouts;
+package com.example.prueba.Activities;
 
 import android.os.Bundle;
 
+import com.example.prueba.Adapters.CellItemReportsAdapter;
 import com.example.prueba.ArrayExample;
 import com.example.prueba.Models.ItemData;
 import com.example.prueba.R;

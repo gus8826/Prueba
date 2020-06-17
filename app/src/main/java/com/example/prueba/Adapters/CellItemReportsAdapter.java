@@ -1,4 +1,4 @@
-package com.example.prueba.Layouts;
+package com.example.prueba.Adapters;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
