@@ -1,19 +1,16 @@
-package com.example.prueba.Adapters;
+package com.example.prueba.Agenda.Adapters;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.prueba.Models.ItemData;
+import com.example.prueba.Agenda.Models.ItemData;
 import com.example.prueba.R;
 import com.squareup.picasso.Picasso;
 

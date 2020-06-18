@@ -1,11 +1,11 @@
-package com.example.prueba.Activities;
+package com.example.prueba.Agenda.Activities;
 
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.example.prueba.Adapters.CellItemReportsAdapter;
+import com.example.prueba.Agenda.Adapters.CellItemReportsAdapter;
 import com.example.prueba.ArrayExample;
-import com.example.prueba.Models.ItemData;
+import com.example.prueba.Agenda.Models.ItemData;
 import com.example.prueba.R;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,16 +13,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class DiaryOfUsersActivity extends AppCompatActivity {
 
     private ArrayList<ItemData> data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_diary_of_users);
 
         RecyclerView recyclerViewReports = findViewById(R.id.recyclerViewReports);
 
@@ -31,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         CellItemReportsAdapter cellItemReportsAdapter = new CellItemReportsAdapter(data, R.layout.cell_item_reports_adapter, new CellItemReportsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(ItemData itemData, int position) {
-                Toast.makeText(MainActivity.this, "click en: "+ itemData.getName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(DiaryOfUsersActivity.this, "click en: "+ itemData.getName(), Toast.LENGTH_SHORT).show();
             }
         });
         recyclerViewReports.setHasFixedSize(true);
