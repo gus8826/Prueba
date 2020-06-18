@@ -1,6 +1,6 @@
 package com.example.prueba.Agenda.Models;
 
-public class ItemData {
+public class DiaryOfUserModel {
 
     private String idReport;
     private String idUser;
@@ -10,14 +10,14 @@ public class ItemData {
     private int image_;
     private String comments;
 
-    public ItemData(String idReport, String name, String nameAlias, int image_) {
+    public DiaryOfUserModel(String idReport, String name, String nameAlias, int image_) {
         this.idReport = idReport;
         this.name = name;
         this.nameAlias = nameAlias;
         this.image_ = image_;
     }
 
-    public ItemData() {
+    public DiaryOfUserModel() {
     }
 
     public String getIdReport() {

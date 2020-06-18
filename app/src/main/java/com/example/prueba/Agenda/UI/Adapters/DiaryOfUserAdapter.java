@@ -1,4 +1,4 @@
-package com.example.prueba.Agenda.Adapters;
+package com.example.prueba.Agenda.UI.Adapters;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
@@ -10,20 +10,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.prueba.Agenda.Models.ItemData;
+import com.example.prueba.Agenda.Models.DiaryOfUserModel;
 import com.example.prueba.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CellItemReportsAdapter extends RecyclerView.Adapter<CellItemReportsAdapter.ViewReports> {
+public class DiaryOfUserAdapter extends RecyclerView.Adapter<DiaryOfUserAdapter.DiaryOfUserHolder> {
 
-    private List<ItemData> list;
+    private List<DiaryOfUserModel> list;
     private int layout;
     private OnItemClickListener itemClickListener;
 
-    public CellItemReportsAdapter(ArrayList<ItemData> list, int layout, OnItemClickListener listener) {
+    public DiaryOfUserAdapter(ArrayList<DiaryOfUserModel> list, int layout, OnItemClickListener listener) {
         this.list = list;
         this.layout = layout;
         this.itemClickListener = listener;
@@ -31,13 +31,13 @@ public class CellItemReportsAdapter extends RecyclerView.Adapter<CellItemReports
 
     @NonNull
     @Override
-    public CellItemReportsAdapter.ViewReports onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public DiaryOfUserHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
-        return new ViewReports(itemView);
+        return new DiaryOfUserHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CellItemReportsAdapter.ViewReports holder, @SuppressLint("RecyclerView") final int position) {
+    public void onBindViewHolder(@NonNull DiaryOfUserHolder holder, @SuppressLint("RecyclerView") final int position) {
         holder.bind(list.get(position), itemClickListener);
     }
 
@@ -46,13 +46,13 @@ public class CellItemReportsAdapter extends RecyclerView.Adapter<CellItemReports
         return list.size();
     }
 
-    public static class ViewReports extends RecyclerView.ViewHolder {
+    public static class DiaryOfUserHolder extends RecyclerView.ViewHolder {
 
         TextView textViewAliasReport;
         TextView textViewNameReport;
         ImageView imageViewReports;
 
-        ViewReports(View itemView) {
+        DiaryOfUserHolder(View itemView) {
             super(itemView);
             textViewAliasReport = itemView.findViewById(R.id.textViewAliasReport);
             textViewNameReport = itemView.findViewById(R.id.textViewNameReport);
@@ -60,20 +60,20 @@ public class CellItemReportsAdapter extends RecyclerView.Adapter<CellItemReports
 
         }
 
-        public void bind(final ItemData itemData, final OnItemClickListener listener) {
-            textViewNameReport.setText(itemData.getName());
-            textViewAliasReport.setText(itemData.getNameAlias());
-            Picasso.get().load(itemData.getImage_()).fit().into(imageViewReports);
+        public void bind(final DiaryOfUserModel diaryOfUserModel, final OnItemClickListener listener) {
+            textViewNameReport.setText(diaryOfUserModel.getName());
+            textViewAliasReport.setText(diaryOfUserModel.getNameAlias());
+            Picasso.get().load(diaryOfUserModel.getImage_()).fit().into(imageViewReports);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    listener.onItemClick(itemData, getAdapterPosition());
+                    listener.onItemClick(diaryOfUserModel, getAdapterPosition());
                 }
             });
         }
     }
 
     public interface OnItemClickListener {
-        void onItemClick(ItemData itemData, int position);
+        void onItemClick(DiaryOfUserModel diaryOfUserModel, int position);
     }
 }
