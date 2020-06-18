@@ -2,9 +2,11 @@ package com.example.prueba.Adapters;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,34 +15,33 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.prueba.Models.ItemData;
 import com.example.prueba.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CellItemReportsAdapter extends RecyclerView.Adapter<CellItemReportsAdapter.ViewReports> {
 
-    private Activity activity;
     private List<ItemData> list;
-    private LayoutInflater inflater;
+    private int layout;
+    private OnItemClickListener itemClickListener;
 
-    public CellItemReportsAdapter(Activity activity, ArrayList<ItemData> list) {
-        this.activity = activity;
+    public CellItemReportsAdapter(ArrayList<ItemData> list, int layout, OnItemClickListener listener) {
         this.list = list;
-        inflater = LayoutInflater.from(activity);
+        this.layout = layout;
+        this.itemClickListener = listener;
     }
 
     @NonNull
     @Override
     public CellItemReportsAdapter.ViewReports onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = inflater.inflate(R.layout.cell_item_reports_adapter, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
         return new ViewReports(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CellItemReportsAdapter.ViewReports viewCategory, @SuppressLint("RecyclerView") final int position) {
-        viewCategory.textViewAliasReport.setText(list.get(position).getNameAlias());
-        viewCategory.textViewNameReport.setText(list.get(position).getName());
-        viewCategory.imageViewReports.setImageResource(list.get(position).getImage_());
+    public void onBindViewHolder(@NonNull CellItemReportsAdapter.ViewReports holder, @SuppressLint("RecyclerView") final int position) {
+        holder.bind(list.get(position), itemClickListener);
     }
 
     @Override
@@ -61,5 +62,21 @@ public class CellItemReportsAdapter extends RecyclerView.Adapter<CellItemReports
             imageViewReports = itemView.findViewById(R.id.imageViewReports);
 
         }
+
+        public void bind(final ItemData itemData, final OnItemClickListener listener) {
+            textViewNameReport.setText(itemData.getName());
+            textViewAliasReport.setText(itemData.getNameAlias());
+            Picasso.get().load(itemData.getImage_()).fit().into(imageViewReports);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick(itemData, getAdapterPosition());
+                }
+            });
+        }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(ItemData itemData, int position);
     }
 }
