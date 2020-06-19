@@ -10,20 +10,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.prueba.Agenda.Models.DiaryOfUserModel;
+import com.example.prueba.Agenda.Models.Users;
 import com.example.prueba.R;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class DiaryOfUserAdapter extends RecyclerView.Adapter<DiaryOfUserAdapter.DiaryOfUserHolder> {
+public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.DiaryOfUserHolder> {
 
-    private List<DiaryOfUserModel> list;
+    private List<Users> list;
     private int layout;
     private OnItemClickListener itemClickListener;
 
-    public DiaryOfUserAdapter(ArrayList<DiaryOfUserModel> list, int layout, OnItemClickListener listener) {
+    public UsersAdapter(List<Users> list, int layout, OnItemClickListener listener) {
         this.list = list;
         this.layout = layout;
         this.itemClickListener = listener;
@@ -60,20 +59,20 @@ public class DiaryOfUserAdapter extends RecyclerView.Adapter<DiaryOfUserAdapter.
 
         }
 
-        public void bind(final DiaryOfUserModel diaryOfUserModel, final OnItemClickListener listener) {
-            textViewNameReport.setText(diaryOfUserModel.getName());
-            textViewAliasReport.setText(diaryOfUserModel.getNameAlias());
-            Picasso.get().load(diaryOfUserModel.getImage_()).fit().into(imageViewReports);
+        public void bind(final Users users, final OnItemClickListener listener) {
+            textViewNameReport.setText(users.getName());
+            textViewAliasReport.setText(users.getNameAlias());
+            Picasso.get().load(users.getImage_()).fit().into(imageViewReports);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    listener.onItemClick(diaryOfUserModel, getAdapterPosition());
+                    listener.onItemClick(users, getAdapterPosition());
                 }
             });
         }
     }
 
     public interface OnItemClickListener {
-        void onItemClick(DiaryOfUserModel diaryOfUserModel, int position);
+        void onItemClick(Users users, int position);
     }
 }

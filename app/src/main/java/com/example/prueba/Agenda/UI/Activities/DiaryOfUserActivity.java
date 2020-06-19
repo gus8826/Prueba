@@ -1,10 +1,10 @@
 package com.example.prueba.Agenda.UI.Activities;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
-import com.example.prueba.Agenda.UI.Adapters.DiaryOfUserAdapter;
-import com.example.prueba.ArrayExample;
-import com.example.prueba.Agenda.Models.DiaryOfUserModel;
+import com.example.prueba.Agenda.UI.Adapters.UsersAdapter;
+import com.example.prueba.Agenda.Models.Users;
 import com.example.prueba.R;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,13 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DiaryOfUserActivity extends AppCompatActivity {
 
-    private ArrayList<DiaryOfUserModel> data;
+    private List<Users> user;
     private RecyclerView recyclerViewReports;
     private LinearLayoutManager linearLayoutManager;
-    private DiaryOfUserAdapter diaryOfUserAdapter;
+    private UsersAdapter usersAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,30 +28,35 @@ public class DiaryOfUserActivity extends AppCompatActivity {
 
         recyclerViewReports = findViewById(R.id.recyclerViewReports);
 
-        llenarLista();
+        user = this.getListUser();
 
-        /*diaryOfUserAdapter = new DiaryOfUserAdapter(data, R.layout.cell_item_reports_adapter, new DiaryOfUserAdapter.OnItemClickListener() {
+        usersAdapter = new UsersAdapter(user, R.layout.cell_item_reports_adapter, new UsersAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(DiaryOfUserModel itemData, int position) {
+            public void onItemClick(Users itemData, int position) {
+
                 Toast.makeText(DiaryOfUserActivity.this, "click en: " + itemData.getName(), Toast.LENGTH_SHORT).show();
             }
-        });*/
+        });
         recyclerViewReports.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerViewReports.setLayoutManager(linearLayoutManager);
-        recyclerViewReports.setAdapter(diaryOfUserAdapter);
+        recyclerViewReports.setAdapter(usersAdapter);
 
     }
 
-    public void llenarLista() {
-        data = new ArrayList<>();
-        for (int i = 0; i < ArrayExample.idReports.length; i++) {
-            data.add(new DiaryOfUserModel(
-                    ArrayExample.idReports[i],
-                    ArrayExample.nameReports[i],
-                    ArrayExample.nameAlias[i],
-                    ArrayExample.imagenReports[i]
-            ));
-        }
+    private List<Users> getListUser() {
+        return new ArrayList<Users>() {{
+            add(new Users("0", "ALejandro", "alex", R.drawable.image_1));
+            add(new Users("1", "Jesús", "jisus", R.drawable.image_2));
+            add(new Users("2", "Erik", "rick", R.drawable.image_3));
+            add(new Users("3", "Ricardo", "richar", R.drawable.image_4));
+            add(new Users("4", "Diego", "xD", R.drawable.image_1));
+            add(new Users("5", "Sofia", "sofy", R.drawable.image_3));
+            add(new Users("6", "Quetzalli", "quetzal", R.drawable.image_4));
+            add(new Users("7", "Martha", "mars", R.drawable.image_1));
+            add(new Users("8", "Adriana", "adris", R.drawable.image_2));
+            add(new Users("9", "Ana", "anita", R.drawable.image_3));
+        }};
     }
+
 }
