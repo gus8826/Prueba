@@ -1,6 +1,7 @@
 package com.example.prueba.Agenda.UI.Adapters;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,11 +21,13 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.DiaryOfUserH
 
     private List<Users> list;
     private int layout;
+    private Activity activity;
     private OnItemClickListener itemClickListener;
 
-    public UsersAdapter(List<Users> list, int layout, OnItemClickListener listener) {
+    public UsersAdapter(List<Users> list, int layout, Activity activity, OnItemClickListener listener) {
         this.list = list;
         this.layout = layout;
+        this.activity = activity;
         this.itemClickListener = listener;
     }
 

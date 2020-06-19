@@ -10,15 +10,16 @@ public class Users {
     private int image_;
     private String comments;
 
+    public Users() {
+
+    }
+
     public Users(String idReport, String name, String nameAlias, int image_) {
         this.idReport = idReport;
         this.name = name;
         this.nameAlias = nameAlias;
         this.image_ = image_;
     }
-
-    public Users() {}
-
 
     public String getIdReport() {
         return idReport;

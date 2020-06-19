@@ -13,6 +13,11 @@
     <string name="text_cell_item_1">name</string>
     <string name="text_cell_item_2">alias</string>
 
+    <string name="title_options_menu_add">Añadir usuario</string>
+    <string name="titel_context_menu_delete">Eliminar</string>
+    <string name="titel_context_menu_reset">Restablecer cantidad</string>
+
+
     <string name="todo">TODO</string>
 
 </resources>
