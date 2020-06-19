@@ -19,6 +19,7 @@ public class Users {
 
     public Users() {}
 
+
     public String getIdReport() {
         return idReport;
     }
